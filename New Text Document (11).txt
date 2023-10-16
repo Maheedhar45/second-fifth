@@ -1,0 +1,206 @@
+9642333452 -- Avanthika
+
+aecpurushoth@gmail.com
+
+
+from nltk.tokenize import RegexpTokenizer
+from pdfminer.high_level import extract_text
+from nltk.probability import FreqDist
+#
+# Extract the text from PDF file
+#
+text = extract_text('/Users/apple/Downloads/2010.00462.pdf')
+#
+# Create an instance of tokenizer using NLTK ResexpTokenizer
+#
+tokenizer = RegexpTokenizer('\w+')
+#
+# Tokenize the text read from PDF
+#
+tokens = tokenizer.tokenize(text)
+#
+# Find Frequency Distribution
+#
+freqdist = FreqDist(tokens)
+#
+# Find words whose length is greater than 5 and frequency greater than 20
+#
+long_frequent_words = [words for words in tokens if len(words) > 5 and freqdist[words] > 20]
+
+
+/*****************************/
+In case you want to find which all words occurred together more often, here is the command you will need to execute:
+#Create NLTK.Text instance using tokens created using tokenizer
+text = nltk.Text(tokens)
+# Execute collocation_list method on nltk.Text instance
+text.collocation_list()
+/****************************************************************/
+
+
+/***********************************************************/
+from nltk.tokenize import RegexpTokenizer
+from nltk.probability import FreqDist
+from pdfminer.high_level import extract_text
+text=extract_text('2010.00462.pdf')
+tokenizer=RegexpTokenizer('\w+')
+tokens=tokenizer.tokenize(text)
+freqdist=FreqDist(tokens)
+long_freq_words= [words for words in tokens if len(words) > 5 and freqdist[words] > 20]
+long_freq_words
+FreqDist(long_freq_words).plot()
+
+from google.colab import files
+files.upload()
+
+/**************************************************************/
+
+import requests 
+response = requests.get("https://en.wikipedia.org/robots.txt") 
+test = response.text 
+print("robots.txt for http://www.wikipedia.org/") 
+print("===================================================") 
+      print(test)
+
+
+import pandas as pd
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
+
+# Sample data
+data = {
+    'Name': ['John', 'Jane', 'Mike', 'Alice', 'Bob'],
+    'Age': [25, 30, 45, 22, 28],
+    'Income': [50000, 60000, 75000, 40000, 80000],
+    'Height': [165, 170, 180, 160, 175]
+}
+
+# Creating a DataFrame
+df = pd.DataFrame(data)
+
+# Formatting: Convert 'Income' to currency format
+df['Income'] = df['Income'].apply(lambda x: "${:,.2f}".format(x))
+
+# Handling Outliers: Identify and remove outliers in 'Age' using Z-score
+z_scores = (df['Age'] - df['Age'].mean()) / df['Age'].std()
+df = df[abs(z_scores) < 2]  # Keeping data points within 2 standard deviations
+
+# Removing Duplicates
+df = df.drop_duplicates()
+
+# Normalizing 'Height' using Min-Max scaling
+min_max_scaler = MinMaxScaler()
+df['Normalized_Height'] = min_max_scaler.fit_transform(df[['Height']])
+
+# Standardizing 'Income' using Z-score
+standard_scaler = StandardScaler()
+df['Standardized_Income'] = standard_scaler.fit_transform(df[['Income']])
+
+print(df)
+
+
+
+
+
+
+
+
+#!/bin/bash
+
+# Activate a virtual environment (if you're using one)
+# source path/to/venv/bin/activate
+
+# Install required packages
+pip install pandas openpyxl
+
+# Python script for data cleanup
+python << EOF
+import pandas as pd
+
+# Load the Excel file
+excel_file_path = 'child_labour_and_marriage_data.xlsx'
+df = pd.read_excel(excel_file_path)
+
+# Check for duplicates and missing data
+duplicates = df[df.duplicated()]
+missing_data = df.isnull().sum()
+
+print("Duplicates:")
+print(duplicates)
+print("\nMissing Data:")
+print(missing_data)
+
+# Eliminate mismatches (example: filtering out invalid ages)
+valid_age_range = (0, 18)  # Assuming ages should be between 0 and 18
+df = df[df['Age'].between(*valid_age_range)]
+
+# Clean line breaks, spaces, and special characters from text columns
+text_columns = ['Country', 'Description']
+for col in text_columns:
+    df[col] = df[col].str.replace('\n', ' ').str.strip()
+
+# Save the cleaned data to a new Excel file
+cleaned_excel_file_path = 'cleaned_child_labour_and_marriage_data.xlsx'
+df.to_excel(cleaned_excel_file_path, index=False)
+
+print("\nCleaned data saved to:", cleaned_excel_file_path)
+EOF
+
+
+
+
+
+
+
+
+
+
+
+
+import matplotlib.pyplot as plt
+
+# Sample data (replace with your actual data)
+corruption_scores = [3.5, 2.8, 4.2, 1.9, 3.7]
+child_labor_percentages = [15, 8, 20, 5, 12]
+
+# Create a scatter plot
+plt.figure(figsize=(10, 6))
+plt.scatter(corruption_scores, child_labor_percentages, color='blue', alpha=0.7)
+
+# Add labels and title
+plt.xlabel('Perceived Corruption Scores')
+plt.ylabel('Child Labor Percentages')
+plt.title('Perceived Corruption Scores vs. Child Labor Percentages')
+
+# Show grid
+plt.grid(True)
+
+# Show plot
+plt.show()
+
+
+
+
+1.b
+2.d
+3.d
+4.d a --doubt
+5.a b  --doubt
+6.a c --doubt
+7.d
+8.d
+9.a
+10.c
+11.a  b --doubt
+12.a
+13.c
+14.b
+15.c  b
+
+Attendence Details:
+                   CLASS: Final Year
+                   DATE:  26-08-2023
+                   SECTION: CSE-D
+                   ABSEBTEES LIST:N1,N2,N3,N4,N5,N6,N8,P1,P2,P3,P4,P5,P6,Q0,L3-524
+
+
+cmrit_cse --> P@ssWordCse
+cmrit_cse_s2 --> P@ssWordCse2
